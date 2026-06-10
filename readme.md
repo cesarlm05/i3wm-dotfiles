@@ -12,6 +12,27 @@
 
 ---
 
+> [!WARNING]
+> **⚠️ MAINTENANCE MODE — LIMITED UPDATES**
+>
+> This project currently uses **[Eww](https://github.com/elkowar/eww)** as its bar/widget framework.
+> Eww has been effectively **abandoned** — no meaningful updates in years, and accumulated bugs with no fixes upstream.
+>
+> Because of this, **active development on this repo is paused** until a replacement is ready.
+>
+> **What this means for you:**
+> - The dotfiles still work as-is for most setups
+> - Bug reports related to Eww may not be fixable on this end
+> - No new features will be added in the meantime
+>
+> **What's coming:**
+> A complete rewrite is in progress using a custom bar/widget framework (currently in development).
+> When ready, this repo will be updated or a new repo will be linked here.
+>
+> Watch/star this repo to get notified. Thank you for 100+ stars ⭐
+
+---
+
 ## DEMO VIDEO
 
 https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
@@ -65,7 +86,7 @@ https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
 | Component     | App       |
 | :------------ | :-------- |
 | WM            | i3-wm     |
-| Bar           | Eww       |
+| Bar           | Eww ⚠️ (see notice above) |
 | Theming       | m3wal     |
 | Compositor    | Picom     |
 | Terminal      | Alacritty |
