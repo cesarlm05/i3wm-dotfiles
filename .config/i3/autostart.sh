@@ -35,7 +35,10 @@ eww daemon
 while ! eww ping &>/dev/null; do sleep 0.1; done
 eww open bar
 
-# 8. Monitor Scripts
+# 8. Clipboard manager
+pgrep -f /usr/bin/clipmenud >/dev/null || clipmenud &
+
+# 9. Monitor Scripts
 pkill -f fullscreen-monitor
 python3 ~/.config/eww/scripts/fullscreen-monitor.py &
 

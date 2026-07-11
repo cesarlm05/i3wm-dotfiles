@@ -174,6 +174,19 @@
           )
       )
 
+      (eventbox :onclick "CM_LAUNCHER=rofi clipmenu -theme ~/.config/rofi/clipboard.rasi -p \"󰅍\" &"
+                :cursor "pointer"
+                :tooltip "Clipboard history"
+        (box :class "notification-section-right"
+             :orientation "h"
+             :space-evenly true
+             :halign "end"
+             :spacing 10
+             :valign "center"
+             :vexpand false
+        (label :class "notification-icon"
+               :text "󰅍")))
+
       (eventbox :onclick "eww open --toggle notification_center"
                 :cursor "pointer"
         (box :class "notification-section-right"

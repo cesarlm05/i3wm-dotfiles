@@ -1,0 +1,78 @@
+/* ~/.config/rofi/clipboard.rasi — historial de clipmenu con colores de m3wal */
+@import "~/.cache/m3-colors/rofi.rasi"
+
+* {
+    font: "JetBrains Mono Nerd Font Bold 10";
+    background-color: transparent;
+    text-color: @foreground;
+    margin: 0px;
+    padding: 0px;
+}
+
+window {
+    width: 480px;
+    location: center;
+    anchor: center;
+
+    background-color: @background;
+    border: 2px solid;
+    border-color: @selected-normal-background;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+mainbox {
+    spacing: 0px;
+    padding: 0px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @active-background;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0px 0px 10px 0px;
+    spacing: 8px;
+}
+
+prompt {
+    text-color: @active-foreground;
+}
+
+entry {
+    placeholder: "Filtrar historial...";
+    placeholder-color: @alternate-normal-foreground;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    spacing: 4px;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    scrollbar: false;
+    fixed-height: false;
+}
+
+element {
+    orientation: horizontal;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @normal-foreground;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}

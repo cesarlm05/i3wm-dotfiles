@@ -118,7 +118,7 @@
 
       (toggle_widget_2 :icon ""
                        :label "Color Pick"
-                       :onclick "gpick &"
+                       :onclick "~/.config/eww/scripts/color-pick.sh &"
                        :active_class "")
     )
   )
