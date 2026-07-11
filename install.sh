@@ -58,7 +58,7 @@ fi
 echo "Installing system packages..."
 sudo pacman -S --needed --noconfirm \
     i3-wm i3status alacritty pcmanfm rofi picom feh scrot xclip xdotool dex \
-    brightnessctl firefox dolphin xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
+    brightnessctl firefox dolphin gwenview xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
     python python-pip python-pipx fish redshift inotify-tools \
     jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk
 

@@ -35,10 +35,13 @@
 (defpoll weather_forecast_data :interval "1h"
   "~/.config/eww/scripts/weather_wrapper_forecast.sh json")
 
-(defpoll my_notes 
-  :interval "30s"
+;; Selector de wallpapers: relee la carpeta cada 60s solo con el panel abierto
+(defpoll wallpapers
+  :interval "60s"
   :run-while performance_monitor_visible
-  "~/.config/eww/scripts/read_note.sh")
+  :initial "[]"
+  "~/.config/eww/scripts/wallpaper-list.sh")
+(defvar wall_index 0)
 
 ;; Variables info laptop
 (defpoll laptop_info :interval "86400s" 
@@ -287,15 +290,15 @@
          :space-evenly true
          :spacing 5
       
-      ;; neovim
+      ;; vscodium
       (button :class "app-button"
-              :onclick "alacritty -e nvim & eww close performance_monitor"
-        (label :class "app-icon-2" :text ""))
+              :onclick "codium & eww close performance_monitor"
+        (label :class "app-icon-2" :text "󰨞"))
       
-      ;; calibre
+      ;; sublime text
       (button :class "app-button"
-              :onclick "calibre & eww close performance_monitor"
-        (label :class "app-icon-3" :text "")))
+              :onclick "subl & eww close performance_monitor"
+        (label :class "app-icon-3" :text "")))
 
     ;; Row 3
     (box :orientation "h"
@@ -304,12 +307,12 @@
       
       ;; image viewer
       (button :class "app-button"
-              :onclick "qimgv & eww close performance_monitor"
+              :onclick "gwenview & eww close performance_monitor"
         (label :class "app-icon-4" :text ""))
       
-      ;; Terminal
+      ;; flameshot (cerrar dashboard primero para no capturarlo)
       (button :class "app-button"
-              :onclick "cheese & eww close performance_monitor"
+              :onclick "eww close performance_monitor && sleep 0.2 && flameshot gui"
         (label :class "app-icon-5" :text "")))
     ))
 
@@ -375,30 +378,33 @@
             (label :text "󰒭" :class "media-widget-btn-dashboard"))))
       )))
 
-;; NOTE BOX
-(defwidget note_box []
-  (box :class "note-container"
+;; WALLPAPER SELECTOR
+(defwidget wallpaper_selector []
+  (box :class "wall-selector"
        :orientation "v"
-       :halign "center"
-       :valign "fill"
+       :space-evenly false
+       :spacing 4
        :vexpand true
-    (button :class "edit-btn"
-            :vexpand true
-            :onclick "xdg-open ~/.config/eww/my-notes.txt &"
-      (box :orientation "v"
-           :space-evenly false
-           :valign "center"
-           :vexpand true
-          (label :text my_notes
-                 :class "note-text"
-                 :xalign 0.5
-                 :yalign 0.5
-                 :vexpand true
-                 :limit-width 16 
-                 :wrap true 
-                 :wrap-mode "wordchar" 
-                 :lines 2 
-                 :justify "center")))))
+    (box :class "wall-preview"
+         :vexpand true
+         :style "background-image: url('${wallpapers[wall_index]?.thumb}');
+                 background-size: cover;
+                 background-position: center;"
+      (box :orientation "h" :space-evenly true :valign "center"
+        (button :class "wall-nav" :halign "center"
+                :onclick "eww update wall_index=${(wall_index - 1 + max(arraylength(wallpapers), 1)) % max(arraylength(wallpapers), 1)}"
+          (label :text ""))
+        (button :class "wall-apply" :halign "center"
+                :tooltip "Aplicar wallpaper y tema"
+                :onclick "m3wal '${wallpapers[wall_index]?.path}' --full &"
+          (label :text ""))
+        (button :class "wall-nav" :halign "center"
+                :onclick "eww update wall_index=${(wall_index + 1) % max(arraylength(wallpapers), 1)}"
+          (label :text ""))))
+    (label :class "wall-name"
+           :text {wallpapers[wall_index]?.name ?: "sin wallpapers"}
+           :limit-width 20
+           :xalign 0.5)))
 
 ;; Performance Content Widget
 (defwidget performance_content []
@@ -543,7 +549,7 @@
          :space-evenly false
          :vexpand true
       (media_widget_dashboard)
-      (note_box))    
+      (wallpaper_selector))
   ))
 
 ;; Main Widget

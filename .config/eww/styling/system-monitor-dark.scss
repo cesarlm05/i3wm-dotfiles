@@ -420,26 +420,43 @@
 }
 
 /* ========================================
-   NOTES BOX
+   WALLPAPER SELECTOR
    ======================================== */
-.note-container {
+.wall-selector {
   background-color: transparentize($surface-container-low, 0.2);
   border: 1px solid $outline-variant;
   border-radius: 10px;
   min-height: 66px;
   min-width: 150px;
+  padding: 6px;
 }
 
-.edit-btn {
-  padding: 0px;
+.wall-preview {
+  border-radius: 8px;
+  min-height: 60px;
 }
 
-.note-text {
-  font-family: "TeX Gyre Chorus", cursive;
-  font-size: 20px;
-  font-weight: bold;
+.wall-nav,
+.wall-apply {
+  font-size: 14px;
+  color: $on-surface-variant;
+  background-color: transparentize($surface-container-low, 0.35);
+  border-radius: 6px;
+  padding: 1px 9px;
+}
+
+.wall-apply {
   color: $primary;
-  padding: 0px;
+}
+
+.wall-nav:hover,
+.wall-apply:hover {
+  background-color: $surface-container-low;
+}
+
+.wall-name {
+  font-size: 11px;
+  color: $on-surface-variant;
 }
 
 /* ========================================
