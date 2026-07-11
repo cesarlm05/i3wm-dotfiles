@@ -99,12 +99,14 @@ if [ -d "fonts" ]; then
     success "Custom fonts installed"
 fi
 
-# Install Tela icon theme
-echo "Installing Tela icon theme..."
-git clone https://github.com/vinceliuice/Tela-icon-theme.git /tmp/Tela-icon-theme
-cd /tmp/Tela-icon-theme && ./install.sh
-cd -
-success "Tela icon theme installed"
+# Install Candy icon theme
+echo "Installing Candy icon theme..."
+rm -rf /tmp/candy-icons
+git clone --depth=1 https://github.com/EliverLara/candy-icons.git /tmp/candy-icons
+mkdir -p ~/.local/share/icons/candy-icons
+rsync -a --delete --exclude='.git' /tmp/candy-icons/ ~/.local/share/icons/candy-icons/
+gtk-update-icon-cache -f ~/.local/share/icons/candy-icons &>/dev/null || true
+success "Candy icon theme installed"
 
 # Set fish as default shell (safely)
 echo "Setting fish as default shell..."

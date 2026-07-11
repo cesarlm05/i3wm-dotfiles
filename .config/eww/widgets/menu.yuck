@@ -12,7 +12,7 @@
   "~/.config/eww/scripts/filter-apps.sh 'Internet'")
 
 (defpoll profile-pic :interval "999h"
-  `echo "$HOME/.config/eww/assets/profile.jpg"`)
+  `echo "$HOME/.config/eww/assets/profile.png"`)
 
 (defwidget cat_tab [cat icon]
   (button

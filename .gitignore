@@ -12,3 +12,6 @@ Thumbs.db
 # Backup directories
 *_backup_*/
 backup_*/
+
+# Claude Code local settings
+.claude/

@@ -27,7 +27,10 @@ fi
 pgrep -x xsettingsd > /dev/null || xsettingsd &
 
 # 7. Widgets (Eww)
+# Esperar a que el eww anterior muera del todo: si "eww daemon" corre mientras
+# el viejo sigue vivo, hereda un daemon medio muerto y deja ventanas huerfanas
 killall eww 2>/dev/null
+while pgrep -x eww >/dev/null; do sleep 0.1; done
 eww daemon
 while ! eww ping &>/dev/null; do sleep 0.1; done
 eww open bar

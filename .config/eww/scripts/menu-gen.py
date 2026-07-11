@@ -557,7 +557,9 @@ def run_daemon():
     dotfiles_dir = DOTFILES_CONFIG.parent
     if dotfiles_dir.is_dir():
         _inotify_add_watch(ifd, str(dotfiles_dir), IN_CLOSE_WRITE | IN_MOVED_TO)
-        print(f"[menu-gen] Watching: {dotfiles_dir}", flush=True)
+        # stderr obligatorio: stdout es el canal del deflisten de eww,
+        # cualquier linea que no sea el JSON del menu corrompe menu_data
+        print(f"[menu-gen] Watching: {dotfiles_dir}", file=sys.stderr, flush=True)
 
     if not wd_to_dir:
         print(
