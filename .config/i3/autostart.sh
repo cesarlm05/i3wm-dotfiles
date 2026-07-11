@@ -2,7 +2,7 @@
 # Autostart script for i3
 
 # 1. System Settings 
-setxkbmap -layout "us,ru" -option "grp:win_space_toggle" &
+setxkbmap -layout "latam" &
 
 # 2. Notification Daemon (harus duluan sebelum yang lain)
 pgrep -x dunst > /dev/null || dunst &

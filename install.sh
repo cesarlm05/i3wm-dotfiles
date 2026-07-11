@@ -59,8 +59,8 @@ echo "Installing system packages..."
 sudo pacman -S --needed --noconfirm \
     i3-wm i3status alacritty pcmanfm rofi picom feh scrot xclip xdotool dex \
     brightnessctl firefox dolphin xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
-    python python-pip python-pipx lxsession fish redshift inotify-tools \
-    jq bc dunst rsync fastfetch pamixer python-i3ipc cava tex-gyre-fonts kde-cli-tools konsole archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk
+    python python-pip python-pipx fish redshift inotify-tools \
+    jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk
 
 # Install fonts
 echo "Installing fonts..."
@@ -79,15 +79,13 @@ fi
 
 # Install AUR packages
 echo "Installing AUR packages..."
-$AUR_HELPER -S --needed --noconfirm \
+MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
     eww-git \
     ttf-jetbrains-mono-nerd \
     ttf-iosevka-nerd \
     ttf-twemoji \
-    ueberzugpp \
     qt5ct-kde \
     qt6ct-kde \
-    mpd-mpris \
     i3lock-color \
     m3wal
 
