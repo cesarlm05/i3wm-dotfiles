@@ -76,8 +76,8 @@ https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
 - **Robust System Info** - CPU, RAM, disk read directly from `/proc` and `free -k`, no dependency on `top` output format
 - **Universal Hardware Detection** - WiFi, battery, AC adapter auto-detected via glob patterns, works with any naming convention
 - **Persistent Workspaces** - Visual-only in Eww bar, does not modify i3 behavior
-- **Config GUI** - Eww widget to configure `MAX_WORKSPACES`, `ICON_THEME`, `DOCK_ENABLED`, etc. without editing files manually
-- **Integrated Dock & Start Menu** - Bottom dock linked to start menu, manage dock apps without touching config files
+- **Config GUI** - Eww widget to configure `MAX_WORKSPACES`, `ICON_THEME`, etc. without editing files manually
+- **Start Menu** - Eww application menu with category filtering and search
 
 ---
 
@@ -123,16 +123,78 @@ chmod +x install.sh
 
 ### Keybindings
 
-| Key                 | Action           |
-| :------------------ | :--------------- |
-| `Super + Enter`     | Terminal         |
-| `Super + Shift + q` | Close window     |
-| `Super + h/j`       | Focus            |
-| `Super + 1-9`       | Workspace        |
-| `Super + d`         | Launcher         |
-| `Super + Shift + r` | Reload i3        |
-| `Super + Shift + h` | Move window      |
-| `Super + Shift + b` | Change wallpaper |
+`$mod` = `Super` (Mod4). Full reference — press `Super + Shift + h` on the desktop to see it live.
+
+#### Launchers & apps
+
+| Key                 | Action                              |
+| :------------------ | :---------------------------------- |
+| `Super + d`         | App launcher (rofi)                 |
+| `Super + Enter`     | Terminal (alacritty)                |
+| `Super + b`         | Browser (firefox)                   |
+| `Super + Shift + f` | File manager (dolphin)              |
+| `Super + Shift + e` | Power menu                          |
+| `Super + Shift + b` | Wallpaper selector (rofi + m3wal)   |
+| `Super + Shift + h` | Keybindings help                    |
+
+#### Windows
+
+| Key                          | Action                                    |
+| :--------------------------- | :---------------------------------------- |
+| `Super + Arrows`             | Focus window                              |
+| `Super + Shift + Arrows`     | Move window (also `Shift + j/k/l/;`)      |
+| `Super + a`                  | Focus parent container                    |
+| `Super + Shift + q`          | Close window                              |
+| `Super + f`                  | Fullscreen                                |
+| `Super + h` / `Super + v`    | Split horizontal / vertical               |
+| `Super + s` / `w` / `e`      | Layout: stacking / tabbed / toggle split  |
+| `Super + Shift + v`          | Toggle floating (500x300, centered)       |
+| `Super + r`                  | Resize mode (`Arrows` or `j/k/l/;`, exit with `Enter`/`Esc`) |
+
+#### Workspaces
+
+| Key                       | Action                        |
+| :------------------------ | :---------------------------- |
+| `Super + 1-0`             | Switch to workspace 1-10      |
+| `Super + Shift + 1-0`     | Move window to workspace      |
+| `Ctrl + Super + ←/→`      | Cycle workspaces (with loop)  |
+
+#### Clipboard (clipmenu)
+
+| Key                 | Action                                |
+| :------------------ | :------------------------------------ |
+| `Super + c`         | Clipboard history (rofi)              |
+| `Super + Shift + x` | Clear clipboard (with confirmation)   |
+
+Also from the bar: left-click the `󰅍` icon = history, right-click = clear.
+
+#### Screenshots
+
+| Key                 | Action                          |
+| :------------------ | :------------------------------ |
+| `Print`             | Full screen → `~/Pictures/Screenshots` |
+| `Super + Shift + s` | Area selection → file           |
+| `Super + Shift + c` | Area selection → clipboard      |
+
+#### Media & hardware
+
+| Key                        | Action                              |
+| :------------------------- | :---------------------------------- |
+| `XF86Audio Raise/Lower`    | Volume ±1% (with eww popup)         |
+| `XF86AudioMute`            | Toggle mute                         |
+| `XF86Audio Play/Next/Prev` | Media control (playerctl)           |
+| `XF86MonBrightness Up/Down`| Brightness (with eww popup)         |
+
+#### System
+
+| Key                 | Action                                  |
+| :------------------ | :-------------------------------------- |
+| `Super + l`         | Lock screen                             |
+| `Super + Shift + r` | Restart i3 in place                     |
+| `Super + Shift + c` | Reload i3 config (see note below)       |
+| `Super + m`         | Voice control mode (exit: `Enter`/`Esc`)|
+
+> **Known conflict:** `Super + Shift + c` is bound twice — on key *press* it reloads the i3 config, and on key *release* it takes the area screenshot to clipboard. Both fire on the same keystroke.
 
 ### Theming
 
@@ -258,9 +320,8 @@ scripts = reload-apps.sh
 ### Eww Extras
 
 - **Persistent Workspaces** — workspace indicator always visible in the bar, visual-only, no i3 config changes
-- **Config GUI** — widget to edit `config-dotfiles` (`MAX_WORKSPACES`, `ICON_THEME`, `DOCK_ENABLED`, `MAX_DOCK_APPS`) directly from the desktop
-- **Bottom Dock** — app launcher dock at the bottom of the screen, built with Eww
-- **Start Menu** — application menu integrated with the dock; add or remove dock apps directly from the menu without editing any config file
+- **Config GUI** — widget to edit `config-dotfiles` (`MAX_WORKSPACES`, `ICON_THEME`) directly from the desktop
+- **Start Menu** — Eww application menu with category filtering and search
 
 ---
 
