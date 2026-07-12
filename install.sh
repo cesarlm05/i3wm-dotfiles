@@ -133,10 +133,13 @@ if ! grep -q "starship init fish" ~/.config/fish/config.fish 2>/dev/null; then
     success "Starship prompt enabled in fish config"
 fi
 
-# Enable starship prompt in bash
+# Enable starship prompt in bash (preset gruvbox-rainbow; fish usa el default)
 if ! grep -q "starship init bash" ~/.bashrc 2>/dev/null; then
-    printf '\n# Prompt Starship\neval "$(starship init bash)"\n' >> ~/.bashrc
+    printf '\n# Prompt Starship\nexport STARSHIP_CONFIG="$HOME/.config/starship-gruvbox-rainbow.toml"\neval "$(starship init bash)"\n' >> ~/.bashrc
     success "Starship prompt enabled in bash config"
+elif ! grep -q "STARSHIP_CONFIG" ~/.bashrc 2>/dev/null; then
+    sed -i 's|eval "$(starship init bash)"|export STARSHIP_CONFIG="$HOME/.config/starship-gruvbox-rainbow.toml"\neval "$(starship init bash)"|' ~/.bashrc
+    success "Starship gruvbox-rainbow preset set for bash"
 fi
 
 # Create necessary directories
