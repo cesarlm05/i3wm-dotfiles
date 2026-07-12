@@ -8,6 +8,13 @@
   :run-while dotfiles-window-open
   "grep -m1 '^MAX_WORKSPACES=' ~/.config/i3/config-dotfiles | cut -d'=' -f2")
 
+(defpoll dotfiles-weather-city :interval "2s"
+  :run-while dotfiles-window-open
+  :initial "..."
+  "~/.config/eww/scripts/weather-wrapper.sh city")
+
+(defvar dotfiles-weather-city-input "")
+
 (defpoll icon-themes-list
   :interval "60s"
   :run-while dotfiles-window-open
@@ -67,6 +74,26 @@
             :onclick "sed -i 's/^ICON_THEME=.*/ICON_THEME=${theme}/' ~/.config/i3/config-dotfiles && eww update dotfiles-icon-theme=${theme}"
             theme))))))
 
+(defwidget weather-city-row []
+  (box :class "dotfiles-row"
+       :orientation "h"
+       :space-evenly false
+       :spacing 12
+    (label :class "dotfiles-label"
+           :text "Weather City"
+           :halign "start"
+           :hexpand true)
+    (box :orientation "h"
+         :space-evenly false
+         :spacing 8
+      (input :class "dotfiles-input"
+             :value {dotfiles-weather-city-input == "" ? dotfiles-weather-city : dotfiles-weather-city-input}
+             :onchange "eww update dotfiles-weather-city-input='{}'")
+      (button
+        :class "dotfiles-btn-group-btn"
+        :onclick "~/.config/eww/scripts/set-weather-city.sh '${dotfiles-weather-city-input}' && eww update dotfiles-weather-city-input='' &"
+        "OK"))))
+
 (defwidget dotfiles-gui []
   (box :class "dotfiles-window"
        :orientation "v"
@@ -91,7 +118,8 @@
          :spacing 20
 
       (ws-dropdown)
-      (icon-dropdown))))
+      (icon-dropdown)
+      (weather-city-row))))
 
 (defwindow dotfiles-window
   :monitor 0
