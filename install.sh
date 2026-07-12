@@ -133,6 +133,12 @@ if ! grep -q "starship init fish" ~/.config/fish/config.fish 2>/dev/null; then
     success "Starship prompt enabled in fish config"
 fi
 
+# Enable starship prompt in bash
+if ! grep -q "starship init bash" ~/.bashrc 2>/dev/null; then
+    printf '\n# Prompt Starship\neval "$(starship init bash)"\n' >> ~/.bashrc
+    success "Starship prompt enabled in bash config"
+fi
+
 # Create necessary directories
 echo "Creating directories..."
 mkdir -p ~/.config/{i3,rofi,dunst,alacritty,picom,eww,m3-colors}
