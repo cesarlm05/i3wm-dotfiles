@@ -16,5 +16,4 @@
 (include "./widgets/notification_center.yuck")
 (include "./widgets/menu.yuck")
 (include "./widgets/media_panel.yuck")
-(include "./widgets/bottombar.yuck")
 (include "./widgets/gui-settings.yuck")
