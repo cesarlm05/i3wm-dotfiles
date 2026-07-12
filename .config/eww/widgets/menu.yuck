@@ -42,13 +42,7 @@
                 :image-height 24)
         (box :orientation "v" :space-evenly false :spacing 2
           (label :class "app-name" :text {app.name} :xalign 0 :limit-width 30)
-          (label :class "app-desc" :text {app.desc} :xalign 0 :limit-width 45))))
-    ; Tombol kecil add/remove dock di kanan
-    (button
-      :class "dock-pin-btn"
-      :tooltip "Add to Dock"
-      :onclick "~/.config/eww/scripts/add-to-dock.sh ${app.id} &"
-      (label :text ">"))))
+          (label :class "app-desc" :text {app.desc} :xalign 0 :limit-width 45))))))
 
 (defwidget app_list []
   (box :class "app-list-container" :hexpand true :vexpand true

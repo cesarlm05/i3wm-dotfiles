@@ -42,5 +42,3 @@ pgrep -f /usr/bin/clipmenud >/dev/null || clipmenud &
 pkill -f fullscreen-monitor
 python3 ~/.config/eww/scripts/fullscreen-monitor.py &
 
-pkill -f dock-autohide
-python3 ~/.config/eww/scripts/dock-autohide.py &
