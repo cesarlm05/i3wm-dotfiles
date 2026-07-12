@@ -29,10 +29,18 @@ pgrep -x xsettingsd > /dev/null || xsettingsd &
 # 7. Widgets (Eww)
 # Esperar a que el eww anterior muera del todo: si "eww daemon" corre mientras
 # el viejo sigue vivo, hereda un daemon medio muerto y deja ventanas huerfanas
+# -r sin Z: un eww zombie (defunct) no se puede matar y dejaba este loop
+# girando para siempre, bloqueando el resto del autostart. Timeout por si acaso.
 killall eww 2>/dev/null
-while pgrep -x eww >/dev/null; do sleep 0.1; done
+for _ in $(seq 50); do
+    pgrep -x -r D,I,R,S,T eww >/dev/null || break
+    sleep 0.1
+done
 eww daemon
-while ! eww ping &>/dev/null; do sleep 0.1; done
+for _ in $(seq 50); do
+    eww ping &>/dev/null && break
+    sleep 0.1
+done
 eww open bar
 
 # 8. Clipboard manager

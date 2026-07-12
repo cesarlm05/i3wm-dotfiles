@@ -117,7 +117,12 @@ def run():
                 file=sys.stderr,
                 flush=True,
             )
-            subprocess.run(["eww", "open", "bar"], capture_output=True)
+            # Solo abrir si el daemon vive: con el daemon muerto, el cliente
+            # eww forkea uno nuevo como hijo de este proceso, y si ese daemon
+            # muere queda zombie y bloquea el pgrep del autostart
+            ping = subprocess.run(["eww", "ping"], capture_output=True)
+            if ping.returncode == 0:
+                subprocess.run(["eww", "open", "bar"], capture_output=True)
 
 
 if __name__ == "__main__":
