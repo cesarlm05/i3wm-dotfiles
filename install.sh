@@ -60,7 +60,8 @@ sudo pacman -S --needed --noconfirm \
     i3-wm i3status alacritty pcmanfm rofi picom feh scrot xclip xdotool dex \
     brightnessctl firefox dolphin gwenview xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
     python python-pip python-pipx fish redshift inotify-tools \
-    jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk
+    jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk \
+    starship
 
 # Install fonts
 echo "Installing fonts..."
@@ -124,6 +125,12 @@ mkdir -p ~/.config/fish
 if ! grep -q "fish_add_path.*\.local/bin" ~/.config/fish/config.fish 2>/dev/null; then
     echo 'fish_add_path ~/.local/bin' >> ~/.config/fish/config.fish
     success "PATH persisted to fish config"
+fi
+
+# Enable starship prompt in fish
+if ! grep -q "starship init fish" ~/.config/fish/config.fish 2>/dev/null; then
+    printf '\n# Prompt Starship\nif status is-interactive\n    starship init fish | source\nend\n' >> ~/.config/fish/config.fish
+    success "Starship prompt enabled in fish config"
 fi
 
 # Create necessary directories
