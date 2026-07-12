@@ -85,7 +85,8 @@ get_model() {
 }
 
 get_cpu() {
-    lscpu | grep "Model name" | cut -d':' -f2 | sed -e 's/(R)//g' -e 's/(TM)//g' -e 's/CPU //g' -e 's/Core //g' | xargs
+    # LC_ALL=C: con locale es_* lscpu traduce "Model name" y el grep no matchea
+    LC_ALL=C lscpu | grep "Model name" | cut -d':' -f2 | sed -e 's/(R)//g' -e 's/(TM)//g' -e 's/CPU //g' -e 's/Core //g' | xargs
 }
 
 get_gpu() {
