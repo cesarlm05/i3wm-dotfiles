@@ -10,7 +10,7 @@ opacity = 0.90
 size = 10.0
 
 [font.normal]
-family = "JetBrains Mono"
+family = "FiraCode Nerd Font"
 style = "Regular"
 
 [cursor]
