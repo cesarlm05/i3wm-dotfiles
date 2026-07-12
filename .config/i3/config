@@ -125,6 +125,10 @@ bindsym --release $mod+Shift+s exec scrot -s ~/Pictures/Screenshots/screenshot_%
 # Area selection → clipboard
 bindsym --release $mod+Shift+c exec scrot -s /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
 
+# Clipboard: historial y vaciado (clipmenu)
+bindsym $mod+c exec --no-startup-id env CM_LAUNCHER=rofi clipmenu -theme ~/.config/rofi/clipboard.rasi -p "󰅍"
+bindsym $mod+Shift+x exec --no-startup-id ~/.config/eww/scripts/clip-clear.sh
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

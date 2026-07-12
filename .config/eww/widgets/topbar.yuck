@@ -175,8 +175,9 @@
       )
 
       (eventbox :onclick "CM_LAUNCHER=rofi clipmenu -theme ~/.config/rofi/clipboard.rasi -p \"󰅍\" &"
+                :onrightclick "~/.config/eww/scripts/clip-clear.sh &"
                 :cursor "pointer"
-                :tooltip "Clipboard history"
+                :tooltip "Clipboard: clic = historial, clic derecho = vaciar"
         (box :class "notification-section-right"
              :orientation "h"
              :space-evenly true
