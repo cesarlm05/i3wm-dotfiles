@@ -95,7 +95,7 @@
          :valign "center"
          :vexpand false
       
-      (eventbox :onclick "eww open --toggle performance_monitor"
+      (eventbox :onclick "eww open --toggle performance_monitor && ~/.config/eww/scripts/cal-nav.sh reset &"
                 :timeout "2s"
                 :cursor "pointer"
         (box :class "windows-center-bar"
