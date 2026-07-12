@@ -215,25 +215,39 @@
       (label :class "info-text" :limit-width 16 :wrap true :wrap-mode "wordchar" :lines 2 :justify "center" :text WEATHER_DESC :xalign 0.5))
 ))
 
+;; Calendario sin widget GTK: la cuadricula viene como JSON de cal-nav.sh
+;; (el widget calendar de GTK cierra la ventana al cambiar de mes en eww)
+(defvar cal_data '{"month_name":"...","year":"","dows":[],"weeks":[]}')
+
 (defwidget calendar_box []
     (box :class "calendar-box"
          :orientation "v"
          :space-evenly false
 
-    ;; Header manual
     (box :class "cal-header"
          :orientation "h"
          :halign "center"
          :space-evenly false
-         :spacing 10 
+         :spacing 10
+      (button :class "cal-nav-btn"
+              :onclick "~/.config/eww/scripts/cal-nav.sh prev"
+        (label :text "‹"))
+      (label :class "cal-month" :text {cal_data.month_name})
+      (label :class "cal-year"  :text {cal_data.year})
+      (button :class "cal-nav-btn"
+              :onclick "~/.config/eww/scripts/cal-nav.sh next"
+        (label :text "›")))
 
-      (label :class "cal-month" :text {datetime.month})
-      (label :class "cal-year"  :text {datetime.year}))
+    (box :class "cal-dow-row" :orientation "h" :space-evenly true
+      (for d in {cal_data.dows}
+        (label :class "cal-dow" :text d)))
 
-    (calendar :class "cal-widget"
-              :show-heading false
-              :halign "center"
-              :vexpand false)))
+    (box :orientation "v" :space-evenly false :spacing 2
+      (for week in {cal_data.weeks}
+        (box :orientation "h" :space-evenly true
+          (for cell in week
+            (label :class "cal-day ${cell.cur ? "" : "dim"} ${cell.today ? "today" : ""}"
+                   :text {cell.d})))))))
 
 ;; Clock & Date Widget
 (defwidget clock_box []
