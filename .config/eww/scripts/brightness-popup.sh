@@ -18,7 +18,7 @@ fi
 
 # Buka popup jika belum ada
 if ! eww active-windows | grep -q "$POPUP_NAME"; then
-    eww open "$POPUP_NAME"
+    eww open --no-daemonize "$POPUP_NAME"
 fi
 
 # Start timer baru di background

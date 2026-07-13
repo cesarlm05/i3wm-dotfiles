@@ -62,7 +62,7 @@
          :valign "center"
          :vexpand false
 
-      (eventbox :onclick "eww open --toggle start_menu"
+      (eventbox :onclick "eww open --no-daemonize --toggle start_menu"
                 :cursor "pointer"
         (image :path "${EWW_CONFIG_DIR}/assets/CachyOS-${icon-theme}.svg"
                :image-width 20
@@ -70,7 +70,7 @@
         
       (workspaces_widget)
 
-      (eventbox :onhover "eww update show_weather_tooltip=true && eww open weather-tooltip-window"
+      (eventbox :onhover "eww update show_weather_tooltip=true && eww open --no-daemonize weather-tooltip-window"
                 :onhoverlost "eww update show_weather_tooltip=false && eww close weather-tooltip-window"
         (box :orientation "h" 
              :space-evenly false
@@ -95,7 +95,7 @@
          :valign "center"
          :vexpand false
       
-      (eventbox :onclick "eww open --toggle performance_monitor && ~/.config/eww/scripts/cal-nav.sh reset &"
+      (eventbox :onclick "~/.config/eww/scripts/toggle-dashboard.sh &"
                 :timeout "2s"
                 :cursor "pointer"
         (box :class "windows-center-bar"
@@ -139,7 +139,7 @@
              :vexpand false
 
           ;; --- 1. WiFi ---
-          (eventbox :onhover "eww update show_wifi_tooltip=true && eww open wifi-tooltip-window"
+          (eventbox :onhover "eww update show_wifi_tooltip=true && eww open --no-daemonize wifi-tooltip-window"
                     :onhoverlost "eww update show_wifi_tooltip=false && eww close wifi-tooltip-window"
             (box :orientation "h"
                  :space-evenly false
@@ -161,7 +161,7 @@
              :vexpand false
 
           ;; --- 2. Battery ---
-          (eventbox :onhover "eww update show_battery_tooltip=true && eww open battery-tooltip-window"
+          (eventbox :onhover "eww update show_battery_tooltip=true && eww open --no-daemonize battery-tooltip-window"
                     :onhoverlost "eww update show_battery_tooltip=false && eww close battery-tooltip-window"
             (box :orientation "h"
                  :spacing 5
@@ -188,7 +188,7 @@
         (label :class "notification-icon"
                :text "󰅍")))
 
-      (eventbox :onclick "eww open --toggle notification_center"
+      (eventbox :onclick "eww open --no-daemonize --toggle notification_center"
                 :cursor "pointer"
         (box :class "notification-section-right"
              :orientation "h"
@@ -200,7 +200,7 @@
         (label :class "notification-icon"
                :text {(arraylength(notification_recent) + arraylength(notification_earlier)) > 0 ? "󰂚" : "󰂜"})))
 
-      (eventbox :onclick "eww open --toggle media_window"
+      (eventbox :onclick "eww open --no-daemonize --toggle media_window"
                 :cursor "pointer"
         (box :class "media-section"
              :orientation "h"

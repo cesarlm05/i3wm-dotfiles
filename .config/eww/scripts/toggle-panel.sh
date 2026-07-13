@@ -24,4 +24,4 @@ if [ "$PANEL" = "bluetooth_window" ]; then
 fi
 
 # Toggle panel yang diminta (buka kalau tutup, tutup kalau buka)
-eww open --toggle $PANEL
+eww open --no-daemonize --toggle $PANEL
