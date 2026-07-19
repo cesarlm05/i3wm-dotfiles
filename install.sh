@@ -70,14 +70,6 @@ sudo pacman -S --needed --noconfirm \
     ttf-jetbrains-mono ttf-fira-code ttf-dejavu \
     ttf-liberation ttf-font-awesome
 
-# Handle i3lock -> i3lock-color
-if pacman -Qi i3lock &>/dev/null; then
-    echo "Removing i3lock (will be replaced by i3lock-color)..."
-    sudo pacman -Rdd --noconfirm i3lock 2>/dev/null \
-        && success "i3lock removed" \
-        || warning "Failed to remove i3lock. Remove manually: sudo pacman -Rdd i3lock"
-fi
-
 # Install AUR packages
 echo "Installing AUR packages..."
 MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
@@ -89,6 +81,30 @@ MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
     qt6ct-kde \
     i3lock-color \
     m3wal
+
+# Verify AUR packages actually landed (yay can exit 0 even if a build failed)
+for pkg in eww-git i3lock-color m3wal; do
+    if pacman -Qi "$pkg" &>/dev/null; then
+        success "$pkg installed"
+    else
+        warning "$pkg failed to build/install. Related features will be unavailable until you install it manually: $AUR_HELPER -S $pkg"
+    fi
+done
+
+# Handle i3lock -> i3lock-color
+# Only remove the repo i3lock if i3lock-color actually made it in, otherwise
+# we'd leave the system with no screen locker at all (xss-lock/lock binding
+# would fail on every session with nothing to fall back on).
+if pacman -Qi i3lock-color &>/dev/null; then
+    if pacman -Qi i3lock &>/dev/null; then
+        echo "Removing i3lock (replaced by i3lock-color)..."
+        sudo pacman -Rdd --noconfirm i3lock 2>/dev/null \
+            && success "i3lock removed" \
+            || warning "Failed to remove i3lock. Remove manually: sudo pacman -Rdd i3lock"
+    fi
+else
+    warning "i3lock-color not installed, keeping i3lock so screen locking still works"
+fi
 
 # Install custom fonts
 if [ -d "fonts" ]; then
@@ -109,16 +125,18 @@ rsync -a --delete --exclude='.git' /tmp/candy-icons/ ~/.local/share/icons/candy-
 gtk-update-icon-cache -f ~/.local/share/icons/candy-icons &>/dev/null || true
 success "Candy icon theme installed"
 
-# Set fish as default shell (safely)
-echo "Setting fish as default shell..."
+# Register fish in /etc/shells (does NOT change your login shell)
+# Changing the default login shell automatically used to be done here via
+# chsh, but some display-manager session wrappers assume a POSIX shell and
+# break silently when $SHELL is fish, kicking the session back to the login
+# screen. Switch manually if you want it: chsh -s "$(which fish)"
 FISH_PATH=$(which fish)
 if ! grep -qxF "$FISH_PATH" /etc/shells; then
     echo "Registering fish to /etc/shells..."
     echo "$FISH_PATH" | sudo tee -a /etc/shells
     success "fish registered to /etc/shells"
 fi
-sudo chsh -s "$FISH_PATH" "$USER"
-success "Default shell changed to fish"
+warning "Login shell left unchanged. To use fish as your default shell, run: chsh -s \"$FISH_PATH\""
 
 # Persist PATH in fish config
 mkdir -p ~/.config/fish

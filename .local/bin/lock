@@ -1,11 +1,25 @@
 #!/bin/bash
-source ~/.cache/m3-colors/colors.sh
+# m3wal genera este archivo la primera vez que se aplica un wallpaper; si
+# nunca corrio (build de AUR fallida o sin wallpaper), usamos colores por
+# defecto en vez de abortar y dejar la sesion sin bloqueo de pantalla.
+if [ -f ~/.cache/m3-colors/colors.sh ]; then
+    source ~/.cache/m3-colors/colors.sh
+else
+    color0="#2E3440"; color1="#BF616A"; color4="#81A1C1"; color5="#B48EAD"
+    color7="#E5E9F0"; on_surface="#ECEFF4"; on_surface_variant="#D8DEE9"
+fi
+
 # Cache wallpaper path
 WALLPAPER=~/.config/m3-colors/current-rofi.jpg
 LOCK_IMG="/tmp/lockscreen.png"
 
-# Darken dan blur wallpaper (adjust -50 untuk lebih/kurang gelap)
-magick "$WALLPAPER" -brightness-contrast -20x0 -blur 0x5 "$LOCK_IMG"
+# Darken dan blur wallpaper (adjust -50 untuk lebih/kurang gelap), o un fondo
+# solido si todavia no hay wallpaper cacheado por m3wal
+if [ -f "$WALLPAPER" ]; then
+    magick "$WALLPAPER" -brightness-contrast -20x0 -blur 0x5 "$LOCK_IMG"
+else
+    magick -size 1920x1080 xc:"${color0}" "$LOCK_IMG"
+fi
 
 # Lock dengan minimal processing
 i3lock \
