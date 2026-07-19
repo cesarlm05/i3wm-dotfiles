@@ -113,7 +113,7 @@ chmod +x install.sh
 | `Super + d`         | App launcher (rofi)                 |
 | `Super + Enter`     | Terminal (alacritty)                |
 | `Super + b`         | Browser (firefox)                   |
-| `Super + Shift + f` | File manager (dolphin)              |
+| `Super + Shift + f` | File manager (pcmanfm)              |
 | `Super + Shift + e` | Power menu                          |
 | `Super + Shift + b` | Wallpaper selector (rofi + m3wal)   |
 | `Super + Shift + h` | Keybindings help                    |

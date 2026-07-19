@@ -104,7 +104,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # start file manager
-bindsym $mod+Shift+f exec dolphin
+bindsym $mod+Shift+f exec pcmanfm
 
 # Browser binding
 bindsym $mod+b exec firefox
