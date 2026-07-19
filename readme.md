@@ -45,10 +45,6 @@ https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
 
 ![Clean Desktop](./Screenshot/clean-1.png)
 
-**Busy Desktop**
-
-![Busy Desktop](./Screenshot/busy-1.png)
-
 **Minimalist Desktop**
 
 ![Rofi Launcher](./Screenshot/minimal-1.png)
