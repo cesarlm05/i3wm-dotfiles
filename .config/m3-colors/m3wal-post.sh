@@ -20,9 +20,6 @@ pgrep -x xsettingsd > /dev/null || xsettingsd &
 
 dunst &
 
-# Tambahkan ini di wallpaper generator script setelah generate custom.lua
-nvim --headless -c "lua require('base46').compile()" -c "qa"
-
 # Reload i3 config
 i3-msg reload &
 
