@@ -23,10 +23,6 @@
     {
       "source": "kdeglobals",
       "destination": "~/.config/kdeglobals"
-    },
-    {
-      "source": "colors.scss",
-      "destination": "~/.config/eww/colors.scss"
     }
   ]
 }

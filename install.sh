@@ -73,7 +73,6 @@ sudo pacman -S --needed --noconfirm \
 # Install AUR packages
 echo "Installing AUR packages..."
 MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
-    eww-git \
     ttf-jetbrains-mono-nerd \
     ttf-iosevka-nerd \
     ttf-twemoji \
@@ -83,7 +82,7 @@ MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
     m3wal
 
 # Verify AUR packages actually landed (yay can exit 0 even if a build failed)
-for pkg in eww-git i3lock-color m3wal; do
+for pkg in i3lock-color m3wal; do
     if pacman -Qi "$pkg" &>/dev/null; then
         success "$pkg installed"
     else
@@ -162,7 +161,7 @@ fi
 
 # Create necessary directories
 echo "Creating directories..."
-mkdir -p ~/.config/{i3,rofi,dunst,alacritty,picom,eww,m3-colors}
+mkdir -p ~/.config/{i3,rofi,dunst,alacritty,picom,m3-colors}
 mkdir -p ~/.local/{share,bin}
 mkdir -p ~/.cache
 
@@ -260,7 +259,7 @@ echo ""
 echo "Installed components:"
 echo "  • i3-wm, rofi, dunst, picom"
 echo "  • alacritty, dolphin, feh"
-echo "  • firefox, eww, m3wal"
+echo "  • firefox, m3wal"
 echo "  • Nerd Fonts & icon fonts"
 echo ""
 echo "Next steps:"

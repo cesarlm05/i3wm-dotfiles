@@ -1,5 +1,5 @@
 #!/bin/bash
-# ~/.config/eww/scripts/bridge.sh
+# ~/.config/Scripts/bridge.sh
 
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 

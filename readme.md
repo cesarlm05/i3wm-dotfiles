@@ -12,24 +12,13 @@
 
 ---
 
-> [!WARNING]
-> **MAINTENANCE MODE — LIMITED UPDATES**
+> [!NOTE]
+> **Eww removed**
 >
-> This project currently uses **[Eww](https://github.com/elkowar/eww)** as its bar/widget framework.
-> Eww has been effectively **abandoned** — no meaningful updates in years, and accumulated bugs with no fixes upstream.
->
-> Because of this, **active development on this repo is paused** until a replacement is ready.
->
-> **What this means for you:**
-> - The dotfiles still work as-is for most setups
-> - Bug reports related to Eww may not be fixable on this end
-> - No new features will be added in the meantime
->
-> **What's coming:**
-> A complete rewrite is in progress using a custom bar/widget framework (currently in development).
-> When ready, this repo will be updated or a new repo will be linked here.
->
-> Watch/star this repo to get notified. Thank you for 100+ stars ⭐
+> This project used to ship **[Eww](https://github.com/elkowar/eww)** as its bar/widget framework.
+> Eww was effectively abandoned upstream (no meaningful updates in years, accumulated bugs with no
+> fixes), so it was dropped entirely — no bar, popups, start menu, or control center for now.
+> i3 runs bare. A lighter replacement may be added later.
 
 ---
 
@@ -67,13 +56,9 @@ https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
 
 - **Auto Material 3 Theming** - Colors extracted from wallpapers via m3wal
 - **Lightweight** - Minimal resources, fast performance
-- **Complete Setup** - i3wm, Eww, Alacritty, Fish, Rofi, all themed
+- **Complete Setup** - i3wm, Alacritty, Fish, Rofi, all themed
 - **One-Click Install** - Automated with backup
-- **Robust System Info** - CPU, RAM, disk read directly from `/proc` and `free -k`, no dependency on `top` output format
 - **Universal Hardware Detection** - WiFi, battery, AC adapter auto-detected via glob patterns, works with any naming convention
-- **Persistent Workspaces** - Visual-only in Eww bar, does not modify i3 behavior
-- **Config GUI** - Eww widget to configure `MAX_WORKSPACES`, `ICON_THEME`, etc. without editing files manually
-- **Start Menu** - Eww application menu with category filtering and search
 
 ---
 
@@ -82,7 +67,7 @@ https://github.com/user-attachments/assets/f52d2bca-540a-45a8-8b81-4ce3fa77b193
 | Component     | App       |
 | :------------ | :-------- |
 | WM            | i3-wm     |
-| Bar           | Eww ⚠️ (see notice above) |
+| Bar           | None (eww removed) |
 | Theming       | m3wal     |
 | Compositor    | Picom     |
 | Terminal      | Alacritty |
@@ -162,24 +147,22 @@ chmod +x install.sh
 | `Super + c`         | Clipboard history (rofi)              |
 | `Super + Shift + x` | Clear clipboard (with confirmation)   |
 
-Also from the bar: left-click the `󰅍` icon = history, right-click = clear.
-
 #### Screenshots
 
 | Key                 | Action                          |
 | :------------------ | :------------------------------ |
 | `Print`             | Full screen → `~/Pictures/Screenshots` |
 | `Super + Shift + s` | Area selection → file           |
-| `Super + Shift + c` | Area selection → clipboard      |
+| `Super + Ctrl + s`  | Area selection → clipboard      |
 
 #### Media & hardware
 
 | Key                        | Action                              |
 | :------------------------- | :---------------------------------- |
-| `XF86Audio Raise/Lower`    | Volume ±1% (with eww popup)         |
+| `XF86Audio Raise/Lower`    | Volume ±1%                          |
 | `XF86AudioMute`            | Toggle mute                         |
 | `XF86Audio Play/Next/Prev` | Media control (playerctl)           |
-| `XF86MonBrightness Up/Down`| Brightness (with eww popup)         |
+| `XF86MonBrightness Up/Down`| Brightness                          |
 
 #### System
 
@@ -187,10 +170,8 @@ Also from the bar: left-click the `󰅍` icon = history, right-click = clear.
 | :------------------ | :-------------------------------------- |
 | `Super + l`         | Lock screen                             |
 | `Super + Shift + r` | Restart i3 in place                     |
-| `Super + Shift + c` | Reload i3 config (see note below)       |
+| `Super + Shift + c` | Reload i3 config                        |
 | `Super + m`         | Voice control mode (exit: `Enter`/`Esc`)|
-
-> **Known conflict:** `Super + Shift + c` is bound twice — on key *press* it reloads the i3 config, and on key *release* it takes the area screenshot to clipboard. Both fire on the same keystroke.
 
 ### Theming
 
@@ -284,7 +265,6 @@ scripts = reload-apps.sh
 ```
 ~/.config/
 ├── i3/           # Window manager
-├── eww/          # Bar & widgets
 ├── alacritty/    # Terminal
 ├── rofi/         # Launcher
 ├── m3-colors/    # Theming
@@ -312,12 +292,6 @@ scripts = reload-apps.sh
 - **WiFi** — loops through `/sys/class/net/*/wireless/`, auto-detects `wlan0`, `wlp2s0`, `wlpXsY`, and any other name
 - **Battery** — globs `BAT*`, `BATT*`, `battery*`, picks the first one with a `capacity` file
 - **AC Adapter** — globs `ADP*`, `AC*`, `ACAD*`, works across different laptop models
-
-### Eww Extras
-
-- **Persistent Workspaces** — workspace indicator always visible in the bar, visual-only, no i3 config changes
-- **Config GUI** — widget to edit `config-dotfiles` (`MAX_WORKSPACES`, `ICON_THEME`) directly from the desktop
-- **Start Menu** — Eww application menu with category filtering and search
 
 ---
 
