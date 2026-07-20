@@ -171,7 +171,6 @@ chmod +x install.sh
 | `Super + l`         | Lock screen                             |
 | `Super + Shift + r` | Restart i3 in place                     |
 | `Super + Shift + c` | Reload i3 config                        |
-| `Super + m`         | Voice control mode (exit: `Enter`/`Esc`)|
 
 ### Theming
 

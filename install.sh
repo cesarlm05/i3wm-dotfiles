@@ -59,7 +59,7 @@ echo "Installing system packages..."
 sudo pacman -S --needed --noconfirm \
     i3-wm i3status alacritty pcmanfm rofi picom feh scrot xclip xdotool dex \
     brightnessctl firefox gwenview xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
-    python python-pip python-pipx fish redshift inotify-tools \
+    python python-pip python-pipx fish inotify-tools xss-lock \
     jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk \
     starship
 
@@ -79,6 +79,7 @@ MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
     qt5ct-kde \
     qt6ct-kde \
     i3lock-color \
+    clipmenu \
     m3wal
 
 # Verify AUR packages actually landed (yay can exit 0 even if a build failed)
