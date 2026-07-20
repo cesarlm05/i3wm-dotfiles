@@ -21,27 +21,33 @@ else
     magick -size 1920x1080 xc:"${color0}" "$LOCK_IMG"
 fi
 
-# Lock dengan minimal processing
-i3lock \
-  --image "$LOCK_IMG" \
-  --fill \
-  --clock \
-  --time-str="%H:%M" \
-  --date-str="%A, %d %B" \
-  --radius 120 \
-  --ring-width 10 \
-  --inside-color="${color0}00" \
-  --ring-color="${color7}88" \
-  --line-color="${color0}00" \
-  --keyhl-color="${color4}ff" \
-  --bshl-color="${color1}ff" \
-  --separator-color="${color0}00" \
-  --insidever-color="${color0}00" \
-  --ringver-color="${color5}ff" \
-  --insidewrong-color="${color1}33" \
-  --ringwrong-color="${color1}ff" \
-  --time-color="${on_surface}ff" \
-  --date-color="${on_surface_variant}ff" \
-  --verif-color="${color7}ff" \
-  --wrong-color="${color1}ff" \
-  --nofork
+# i3lock-color-only flags (--clock, --ring-color, etc). Plain i3lock (the
+# fallback installed when the i3lock-color AUR build fails) doesn't recognize
+# them and would exit with an error, so detect support before using them.
+if i3lock --help 2>&1 | grep -q -- "--ring-color"; then
+    i3lock \
+      --image "$LOCK_IMG" \
+      --fill \
+      --clock \
+      --time-str="%H:%M" \
+      --date-str="%A, %d %B" \
+      --radius 120 \
+      --ring-width 10 \
+      --inside-color="${color0}00" \
+      --ring-color="${color7}88" \
+      --line-color="${color0}00" \
+      --keyhl-color="${color4}ff" \
+      --bshl-color="${color1}ff" \
+      --separator-color="${color0}00" \
+      --insidever-color="${color0}00" \
+      --ringver-color="${color5}ff" \
+      --insidewrong-color="${color1}33" \
+      --ringwrong-color="${color1}ff" \
+      --time-color="${on_surface}ff" \
+      --date-color="${on_surface_variant}ff" \
+      --verif-color="${color7}ff" \
+      --wrong-color="${color1}ff" \
+      --nofork
+else
+    i3lock --image "$LOCK_IMG" --nofork
+fi

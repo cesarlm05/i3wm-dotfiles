@@ -58,8 +58,8 @@ fi
 echo "Installing system packages..."
 sudo pacman -S --needed --noconfirm \
     i3-wm i3status alacritty pcmanfm rofi picom feh scrot xclip xdotool dex \
-    brightnessctl firefox dolphin gwenview xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
-    python python-pip python-pipx fish redshift inotify-tools \
+    brightnessctl firefox gwenview xorg-xdpyinfo playerctl lm_sensors imagemagick xsettingsd \
+    python python-pip python-pipx fish inotify-tools xss-lock \
     jq bc dunst rsync fastfetch pamixer python-i3ipc tex-gyre-fonts archlinux-xdg-menu python-dbus xdg-desktop-portal-gtk \
     starship
 
@@ -73,17 +73,17 @@ sudo pacman -S --needed --noconfirm \
 # Install AUR packages
 echo "Installing AUR packages..."
 MAKEFLAGS="-j2" $AUR_HELPER -S --needed --noconfirm \
-    eww-git \
     ttf-jetbrains-mono-nerd \
     ttf-iosevka-nerd \
     ttf-twemoji \
     qt5ct-kde \
     qt6ct-kde \
     i3lock-color \
+    clipmenu \
     m3wal
 
 # Verify AUR packages actually landed (yay can exit 0 even if a build failed)
-for pkg in eww-git i3lock-color m3wal; do
+for pkg in i3lock-color m3wal; do
     if pacman -Qi "$pkg" &>/dev/null; then
         success "$pkg installed"
     else
@@ -162,7 +162,7 @@ fi
 
 # Create necessary directories
 echo "Creating directories..."
-mkdir -p ~/.config/{i3,rofi,dunst,alacritty,picom,eww,m3-colors}
+mkdir -p ~/.config/{i3,rofi,dunst,alacritty,picom,m3-colors}
 mkdir -p ~/.local/{share,bin}
 mkdir -p ~/.cache
 
@@ -259,8 +259,8 @@ echo "Backup saved at: $BACKUP_DIR"
 echo ""
 echo "Installed components:"
 echo "  • i3-wm, rofi, dunst, picom"
-echo "  • alacritty, dolphin, feh"
-echo "  • firefox, eww, m3wal"
+echo "  • alacritty, pcmanfm, feh"
+echo "  • firefox, m3wal"
 echo "  • Nerd Fonts & icon fonts"
 echo ""
 echo "Next steps:"

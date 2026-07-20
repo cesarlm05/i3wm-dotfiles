@@ -1,5 +1,5 @@
 ! X Resources Configuration
-! This file will be populated by pywal/wpg
+! Terminal/app colors below are populated by m3wal (see ~/.config/m3-colors)
 
 Xft.dpi: 96
 Xft.antialias: true
@@ -9,4 +9,4 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-! Terminal colors will be set by pywal
+! Terminal colors will be set by m3wal

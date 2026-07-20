@@ -124,7 +124,7 @@
     ]
   },
 
-  // --- UI Dasar & Neovim ---
+  // --- UI Dasar ---
   "editor.minimap.enabled": false,
   "workbench.activityBar.location": "hidden",
   "breadcrumbs.enabled": false,
@@ -137,7 +137,6 @@
   "editor.padding.top": 8,
   "editor.padding.bottom": 8,
   "window.menuBarVisibility": "toggle",
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
   "vscode_custom_css.imports": ["file:///home/diaz/.config/vscode/custom.css"],
   "vscode_custom_css.policy": true,
 

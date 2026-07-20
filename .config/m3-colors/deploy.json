@@ -1,10 +1,6 @@
 {
   "deployments": [
     {
-      "source": "colors-nvim.lua",
-      "destination": "~/.config/nvim/lua/themes/material3.lua"
-    },
-    {
       "source": "qt5ct.conf",
       "destination": "~/.config/qt5ct/style-colors.conf"
     },
@@ -23,10 +19,6 @@
     {
       "source": "kdeglobals",
       "destination": "~/.config/kdeglobals"
-    },
-    {
-      "source": "colors.scss",
-      "destination": "~/.config/eww/colors.scss"
     }
   ]
 }
